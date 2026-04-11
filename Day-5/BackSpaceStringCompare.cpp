@@ -41,25 +41,32 @@
 // The actual typed string by Alice : ‘b’
 // Hence , they do not matched.
 
+
 #include <iostream>
 #include <string>
 using namespace std;
+string process(string x){
+    string temp="";
 
-bool userLogic(string bob, string alice) {
-    // user logic goes here
-    string temp1 ="";
-    int x1= bob.length();
-
-    for(int i=1;i<x1;i++){
-        if(bob[i]=="#"){
-            temp.pop();
-            continue;
+    for(char ch : x){
+        if(ch=='#'){
+            if(!temp.empty()){
+                temp.pop_back();
+            }
         }
         else{
-            temp+=bob[i];
+            temp.push_back(ch);
         }
     }
-    return true; // or false
+
+    return temp;
+}
+bool userLogic(string bob, string alice) {
+    // user logic goes here
+    string x=process(bob);
+    string y=process(alice);
+
+    return x==y; // or false
 }
 
 int main() {
